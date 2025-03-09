@@ -1,0 +1,59 @@
+{# la page d'Inscription et de connexion #}
+
+{% extends "../layouts/base.html.twig" %}
+
+{% block style %}
+    <link rel="stylesheet" href="/assets/css/subscribe.css">
+{% endblock %}
+
+{% block title %}
+{# double {{}} = variable #}
+    <title>{{ title }}</title>
+{% endblock %}
+
+{% block main %}
+
+<main>
+    <section>
+        <div>
+            <h1>Se connecter</h1>
+        <div>
+            <h2>Sugar Novel</h2>
+        </div>
+        <div>
+            <form action="./subscribe" method="post">
+                <div>
+                    <label for="name">Nom Complet</label>
+                    <input id="name" type="text" name="name">
+                </div>
+                <div>
+                    <label for="email">Adresse e-mail</label>
+                    <input id="mail" type="text" name="mail">
+                    {# {% if error %}
+                    <p>{{error.mail }}</p>
+                    {% endif %} #}
+                </div>
+                <div>
+                    <label for="password">Mot de passe</label>
+                    <input id="password" type="password" name="password">
+                </div>
+                <div>
+                    <label for="confirmPassword">Confirmez votre mot de passe</label>
+                    <input id="confirmPassword" type="password" name="confirmPassword">
+                    {# {% if error %}
+                    <p>{{error.confirmPassword }}</p>
+                    {% endif %}
+                     #}
+                </div>
+                <div>
+                    <button type="submit">créer un compte</button>
+                </div>
+                <div>
+                    <p>Vous avez déjà un compte ?</p>
+                    <a href="/login">Connectez-vous</a>
+                </div>
+            </form>
+        </div>
+    </section>
+</main>
+{% endblock %}
