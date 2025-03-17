@@ -19,8 +19,6 @@ const authguard = async (req, res, next) => {
     catch (error) {
         res.redirect('/login')
     }
-
 }
-
 
 module.exports = authguard;

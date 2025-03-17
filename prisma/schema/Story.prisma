@@ -1,0 +1,8 @@
+model Story {
+  id      Int    @id @default(autoincrement())
+  title   String
+  author  String
+  content String
+  userId  Int
+  user    User   @relation(fields: [userId], references: [id])
+}

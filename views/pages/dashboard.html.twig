@@ -1,0 +1,38 @@
+{% extends "../layouts/base.html.twig" %}
+
+{% block style %}
+	<link rel="stylesheet" href="/assets/css/dashboard.css">
+{% endblock %}
+
+{% block title %}
+	<p>Page d'accueil Bienvenue,
+		{{ user.name }}</p>
+{% endblock %}
+
+{% block main %}
+	<main>
+		<div>
+			<h1>Sugar Novel dashboard</h1>
+		</div>
+
+		<div>
+			<form action="/addstory" method="post">
+				<div>
+					<label for="title">Le Titre de votre Visual Novel</label>
+					<input id="title" type="text" name="title">
+				</div>
+				<div>
+					<label for="author">Votre nom d'auteur</label>
+					<input id="author" type="text" name="author">
+				</div>
+				<div>
+					<label for="content">Le contenue de votre Visual Novel / Description</label>
+					<input id="content" type="text" name="content">
+				</div>
+				<div>
+					<button type="submit">Envoyer</button>
+				</div>
+			</form>
+		</div>
+	</main>
+{% endblock %}

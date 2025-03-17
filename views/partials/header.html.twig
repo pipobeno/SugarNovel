@@ -1,6 +1,6 @@
 {# Voici le header #}
 {% block style %}
-<link rel="stylesheet" href="/assets/css/header.css">
+	<link rel="stylesheet" href="/assets/css/header.css">
 {% endblock %}
 <header>
 	<div>
@@ -8,14 +8,27 @@
 			<img src="assets/images/logo-temporaire.svg" alt="logo">
 		</div>
 		<nav>
-			<ul>
-				<li>
-					<a href="/subscribe">Inscription</a>
-				</li>
-			</ul>
-			<ul>
-				<li><a href="/login">Connexion</a></li>
-			</ul>
+			{% if user.id %}
+				<ul>
+					<li>
+						<a href="/addstory">Ajouter un visual Novel</a>
+					</li>
+				</ul>
+				<ul>
+					<li>
+						<a href="/logout">Déconnexion</a>
+					</li>
+				</ul>
+			{% else %}
+				<ul>
+					<li>
+						<a href="/subscribe">Inscription</a>
+					</li>
+				</ul>
+				<ul>
+					<li><a href="/login">Connexion</a></li>
+				</ul>
+			{% endif %}
 		</nav>
 	</div>
 </header>

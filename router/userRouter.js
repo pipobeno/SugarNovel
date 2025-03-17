@@ -13,12 +13,19 @@ const prisma = new PrismaClient().$extends(hashPasswordExtension)
 
 
 // nos Routes ici
+
 userRouter.get('/subscribe', (req, res) => {
     res.render('pages/subscribe.html.twig',
         // {
         //     title: 'Inscription',
         // }
     )
+})
+
+//Déconnexion
+userRouter.get('/logout', (req,res) => {
+    req.session.destroy();
+    res.redirect('/login');
 })
 
 userRouter.post('/subscribe', async (req, res) => {
@@ -71,7 +78,7 @@ userRouter.post('/login', async (req, res) => {
                 res.redirect('/') //redirecction vers l'acceuil
             }
             else throw {
-                password: "Mauvais mot de passe" //on renvoie l'erreur dans le catch
+                password: "Mot de passe incorrect" //on renvoie l'erreur dans le catch
             }
 
         }
@@ -87,9 +94,15 @@ userRouter.post('/login', async (req, res) => {
     }
 })
 
-userRouter.get("/", authguard,(req,res)=> {
-    res.render("pages/dashboard.twig",
+
+userRouter.get("/", authguard, async(req,res)=> {
+    res.render("pages/login.html.twig",
         {
+            user: await prisma.user.findUnique({
+                where: {
+                    email: req.body.email
+                }
+            }),
             title: "Home"
         }
     )
@@ -97,28 +110,6 @@ userRouter.get("/", authguard,(req,res)=> {
 
 module.exports = userRouter;
 
-// const { PrismaClient } = require('@prisma/client');
-
-// const hashPasswordExtension = require('../services/extensions/hashPasswordExtensions');
-
-// const bcrypt = require("bcrypt");
-
-// const authguard = require('../services/authguard');
-
-// const userRouter = require('express').Router();
-
-// // const prisma = new PrismaClient({ log: ['query', 'info', 'warn', 'error'] }).$extends(hashPasswordExtension)
-// const prisma = new PrismaClient().$extends(hashPasswordExtension)
-
-
-// // nos Routes ici
-// userRouter.get('/subscribe', (req, res) => {
-//     res.render('pages/subscribe.html.twig',
-//         // {
-//         //     title: 'Inscription',
-//         // }
-//         )
-// })
 
 // userRouter.post('/subscribe', async (req, res) => {
 //     try {
@@ -146,40 +137,3 @@ module.exports = userRouter;
 //     }
 
 // })
-
-// userRouter.get('/login', (req, res) => {
-//     res.render('pages/login.html.twig', { title: "connexion" });
-// })
-
-// userRouter.post('/login', async (req, res) => {
-//     try {
-//         const user = await prisma.user.findUnique({ //On cherche un utilisateur
-//             where: {
-//                 email: req.body.email //dont le mail est celui donné dans le formulaire
-//             }
-//         })
-//         if (user) {
-//             if (await bcrypt.compare(req.body.password, user.password)) { //compare les mots de passe
-//                 req.session.user = user //stock le user en session
-//                 res.redirect('/') //redirecction vers l'acceuil
-//             }
-//             else throw {
-//                 password: "Mauvais mot de passe" //on renvoie l'erreur dans le catch
-//             }
-
-//         }
-//         else {
-//             throw { email: "Adresse e-mail inconnue" }
-//         }
-//     } catch (error) {
-//         res.render('pages/login.html.twig',
-//             {
-//                 title: 'Connexion',
-//                 error
-//             })
-//     }
-// })
-
-
-// module.exports = userRouter;
-
