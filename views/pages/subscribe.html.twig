@@ -3,57 +3,76 @@
 {% extends "../layouts/base.html.twig" %}
 
 {% block style %}
-    <link rel="stylesheet" href="/assets/css/subscribe.css">
+	<link rel="stylesheet" href="/assets/css/subscribe.css">
 {% endblock %}
 
 {% block title %}
-{# double {{}} = variable #}
-    <title>{{ title }}</title>
+	{# double {{}} = variable #}
+	<title>{{ title }}</title>
 {% endblock %}
 
 {% block main %}
 
-<main>
-    <section>
-        <div>
-            <h1>Sugar Novel</h1>
-        <div>
-            <h2>S'inscrire</h2>
-        </div>
-        <div>
-            <form action="./subscribe" method="post">
-                <div>
-                    <label for="name">Nom Complet</label>
-                    <input id="name" type="text" name="name">
-                </div>
-                <div>
-                    <label for="email">Adresse e-mail</label>
-                    <input id="email" type="text" name="email">
-                    {% if error %}
-                    <p>{{error.email}}</p>
-                    {% endif %}
-                </div>
-                <div>
-                    <label for="password">Mot de passe</label>
-                    <input id="password" type="password" name="password">
-                </div>
-                <div>
-                    <label for="confirm_password">Confirmez votre mot de passe</label>
-                    <input id="confirm_password" type="password" name="confirm_password">
-                    {% if error %}
-                    <p>{{error.confirm_password}}</p>
-                    {% endif %}
-                    
-                </div>
-                <div>
-                    <button type="submit">créer un compte</button>
-                </div>
-                <div>
-                    <p>Vous avez déjà un compte ?</p>
-                    <a href="/login">Connectez-vous</a>
-                </div>
-            </form>
-        </div>
-    </section>
-</main>
+	<main>
+		<section>
+			<div>
+				<h1>SugarNovel</h1>
+			</div>
+			<div>
+				<h2>S'inscrire</h2>
+			</div>
+			<div>
+				<form action="./subscribe" method="post">
+					<div>
+						<label for="name">Nom Complet</label>
+						<input id="name" type="text" name="name">
+					</div>
+					<div>
+						<label for="email">Adresse e-mail</label>
+						<input id="email" type="text" name="email">
+						{% if error %}
+							<p>{{error.email}}</p>
+						{% endif %}
+					</div>
+					<div class="password">
+					<label for="password">Créez un mot de passe</label>
+						<input id="password" type="password" name="password">
+						<img src="assets/images/eye-close.svg" alt="eye-close" id="eye" onclick="changer()">
+					</div>
+					<div class="password">
+					<label for="password">Confirmez votre mot de passe</label>
+						<input id="confirm_password" type="password" name="confirm_password">
+						{# <img src="assets/images/eye-close.svg" alt="eye-close" id="eye"> #}
+						{% if error %}
+							<p>{{error.confirm_password}}</p>
+						{% endif %}
+
+					</div>
+					<div>
+						<button type="submit">créer un compte</button>
+					</div>
+					<div>
+						<p>Vous avez déjà un compte ?</p>
+						<a href="/login">Connectez-vous</a>
+					</div>
+				</form>
+			</div>
+		</section>
+	</main>
+	<script>
+	e=true;
+	function changer() {
+		if (e){
+			document.getElementById('password').type = 'text';
+			document.getElementById('eye').src = 'assets/images/eye.svg';
+			e=false;
+		}
+		else {
+			document.getElementById('password').type = 'password';
+			document.getElementById('eye').src = 'assets/images/eye-close.svg';
+			e=true;
+		}
+		
+	}
+	</script>
 {% endblock %}

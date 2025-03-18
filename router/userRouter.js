@@ -95,17 +95,16 @@ userRouter.post('/login', async (req, res) => {
 })
 
 
-userRouter.get("/", authguard, async(req,res)=> {
-    res.render("pages/login.html.twig",
-        {
-            user: await prisma.user.findUnique({
-                where: {
-                    email: req.body.email
-                }
-            }),
-            title: "Home"
+userRouter.get("/",authguard , async (req, res) => {
+    const user = await prisma.user.findUnique({
+        where: {
+            id: req.session.user.id
+        },
+        include: {
+            storys: true
         }
-    )
+    })
+    res.render('pages/dashboard.html.twig', {title: "acceuil", user: req.session.user, storys:user.storys});
 })
 
 module.exports = userRouter;

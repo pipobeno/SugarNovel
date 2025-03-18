@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'inter';
+    src: url('../fonts/Inter/Inter-Italic-VariableFont_opsz\,wght.ttf');
+}
+
 footer {
-    background-color: #ffb1fb;
+    font-family: inter;
 }
