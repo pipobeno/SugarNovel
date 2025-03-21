@@ -91,7 +91,6 @@ input {
     font-family: inter;
     background-color: transparent;
     color: #999999;
-    /* position: relative; */
 }
 
 .password input {
@@ -103,7 +102,6 @@ input {
     font-family: inter;
     background-color: transparent;
     color: #999999;
-    /* position: relative; */
 
 }
 
@@ -123,11 +121,6 @@ form img {
 .password div {
     display: flex;
     flex-direction: row;
-    /* cursor: pointer;
-    position: absolute;
-    top: 36%;
-    left: 58%;
-    transform: translate(-50%, -50%);  Décalage pour centrer */
 }
 
 .error-message {

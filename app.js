@@ -7,6 +7,8 @@ const storyRouter = require("./router/storyRouter")
 
 const app = express()
 
+require("dotenv").config()
+
 app.use(express.urlencoded({extended: true}))
 
 app.use(express.static('./public'))
@@ -21,6 +23,6 @@ app.use(userRouter)
 app.use(storyRouter)
 
 
-app.listen(3000, () => {
-    console.log('server is running on port 3000')
+app.listen(process.env.PORT, () => {
+    console.log('server is running on port 3011')
 });

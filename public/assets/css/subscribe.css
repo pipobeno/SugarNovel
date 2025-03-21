@@ -1,7 +1,155 @@
+/* @font-face {
+    font-family: 'inter';
+    src: url('../fonts/Inter/Inter-Italic-VariableFont_opsz\,wght.ttf');
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffd6e0;
+}
+
+main {
+    background-color: #fffafd;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: inter;
+    padding: 50px;
+    padding-inline: 125px;
+}
+
+
+button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 20px;
+    background-color: #ffd6e0;
+    color: #76385A;
+    border: none;
+    border-radius: 7px;
+    font-size: 16px;
+    font-family: inter;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #ff8da9;
+    color: white;
+}
+
+a {
+    text-decoration: none;
+    color: #ffbdcd;
+}
+
+p {
+    color: #999999;
+}
+
+h1 {
+    color: #b35093;
+    font-weight: 500;
+    font-size: 2em;
+}
+
+h2 {
+    color: #5c5c5c;
+    font-weight: 500;
+}
+
+input {
+    width: 90%;
+    padding: 10px;
+    border: none;
+    border-bottom: 2px solid #999999;
+    outline: none;
+    font-family: inter;
+    background-color: transparent;
+    color: #999999;
+}
+
+.password input {
+    width: 80%;
+    padding: 10px;
+    border: none;
+    border-bottom: 2px solid #999999;
+    outline: none;
+    font-family: inter;
+    background-color: transparent;
+    color: #999999;
+
+}
+
+.passwordTwo input {
+    width: 80%;
+    padding: 10px;
+    border: none;
+    border-bottom: 2px solid #999999;
+    outline: none;
+    font-family: inter;
+    background-color: transparent;
+    color: #999999;
+}
+
+main label {
+    color: #8d8d8d;
+    display: flex;
+    text-align: start;
+    margin-top: 10px;
+    width: 100%;
+}
+
+form img {
+    cursor: pointer;
+    display: flex;
+    
+}
+
+
+.password div {
+    display: flex;
+    flex-direction: row;
+}
+
+
+.passwordTwo div {
+    display: flex;
+    flex-direction: row;
+}
+
+.error-message {
+    color: #cc6e92;
+} */
+
+
 @font-face {
     font-family: 'inter';
     src: url('../fonts/Inter/Inter-Italic-VariableFont_opsz\,wght.ttf');
 }
+
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    background-color: #FFC3E4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: inter;
+}
+
 
 body {
     margin: 0;
@@ -67,7 +215,6 @@ h2 {
 }
 
 input {
-    width: 100%;
     padding: 10px;
     border: none;
     border-bottom: 2px solid #999999;
@@ -75,8 +222,21 @@ input {
     font-family: inter;
     background-color: transparent;
     color: #999999;
-    position: relative;
+    
 }
+
+.password input {
+    
+    padding: 10px;
+    border: none;
+    border-bottom: 2px solid #999999;
+    outline: none;
+    font-family: inter;
+    background-color: transparent;
+    color: #999999;
+
+}
+
 
 main label {
     color: #8d8d8d;
@@ -91,20 +251,9 @@ form img {
 }
 
 
-.password img {
-    cursor: pointer;
-    position: absolute;
-    top: 51%;
-    left: 58%;
-    transform: translate(-50%, -50%); /* Décalage pour centrer */
-}
-
-.passwordTwo img {
-    cursor: pointer;
-    position: absolute;
-    top: 59%;
-    left: 58%;
-    transform: translate(-50%, -50%); /* Décalage pour centrer */
+.password div {
+    display: flex;
+    flex-direction: row;
 }
 
 .error-message {
