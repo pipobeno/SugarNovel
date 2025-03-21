@@ -56,13 +56,13 @@ p {
 }
 
 h1 {
-    color: #5f284e;
+    color: #b35093;
     font-weight: 500;
     font-size: 2em;
 }
 
 h2 {
-    color: #323232;
+    color: #5c5c5c;
     font-weight: 500;
 }
 
@@ -94,7 +94,19 @@ form img {
 .password img {
     cursor: pointer;
     position: absolute;
-    top: 52%;
-    left: 61%;
+    top: 51%;
+    left: 58%;
     transform: translate(-50%, -50%); /* Décalage pour centrer */
+}
+
+.passwordTwo img {
+    cursor: pointer;
+    position: absolute;
+    top: 59%;
+    left: 58%;
+    transform: translate(-50%, -50%); /* Décalage pour centrer */
+}
+
+.error-message {
+    color: #cc6e92;
 }

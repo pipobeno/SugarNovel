@@ -30,21 +30,21 @@
 					<div>
 						<label for="email">Adresse e-mail</label>
 						<input id="email" type="text" name="email">
-						{% if error %}
-							<p>{{error.email}}</p>
+						{% if error.email %}
+							<p class="error-message">{{ error.email }}</p>
 						{% endif %}
 					</div>
 					<div class="password">
-					<label for="password">Créez un mot de passe</label>
+						<label for="password">Créez un mot de passe</label>
 						<input id="password" type="password" name="password">
 						<img src="assets/images/eye-close.svg" alt="eye-close" id="eye" onclick="changer()">
 					</div>
-					<div class="password">
-					<label for="password">Confirmez votre mot de passe</label>
+					<div class="passwordTwo">
+						<label for="password">Confirmez votre mot de passe</label>
 						<input id="confirm_password" type="password" name="confirm_password">
-						{# <img src="assets/images/eye-close.svg" alt="eye-close" id="eye"> #}
-						{% if error %}
-							<p>{{error.confirm_password}}</p>
+						<img src="assets/images/eye-close.svg" alt="eye-close" id="eye" onclick="changer()">
+						{% if error.password %}
+							<p class="error-message">{{ error.password }}</p>
 						{% endif %}
 
 					</div>
@@ -60,19 +60,22 @@
 		</section>
 	</main>
 	<script>
-	e=true;
-	function changer() {
-		if (e){
-			document.getElementById('password').type = 'text';
-			document.getElementById('eye').src = 'assets/images/eye.svg';
-			e=false;
-		}
-		else {
-			document.getElementById('password').type = 'password';
-			document.getElementById('eye').src = 'assets/images/eye-close.svg';
-			e=true;
-		}
-		
-	}
+		let isPasswordVisible = false;
+
+function changer() {
+const passwordFields = document.querySelectorAll('#password, #confirm_password');
+const eyeIcons = document.querySelectorAll('#eye');
+
+passwordFields.forEach(field => {
+field.type = isPasswordVisible ? 'password' : 'text';
+});
+
+eyeIcons.forEach(icon => {
+icon.src = isPasswordVisible ? 'assets/images/eye-close.svg' : 'assets/images/eye.svg';
+});
+
+isPasswordVisible = ! isPasswordVisible;
+}
 	</script>
+
 {% endblock %}

@@ -26,7 +26,11 @@
                 </div>
                 <div>
                     <label for="password">Votre mot de passe</label>
+                    <div  class="password">
                     <input id="password" type="password" name="password">
+                    <img src="assets/images/eye-close.svg" alt="eye-close" id="eye" onclick="changer()">
+                    </div>
+                    
                     {% if error.password %}
                     <p>{{error.password}}</p>
                     {% endif %}
@@ -38,5 +42,19 @@
         </div>
     </section>
 </main>
+<script>
+e=true;
+function changer(){
+    if(e){
+        document.getElementById('password').type='text';
+        document.getElementById('eye').src='assets/images/eye.svg';
+        e=false;
+    }else{
+        document.getElementById('password').type='password';
+        document.getElementById('eye').src='assets/images/eye-close.svg';
+        e=true;
+    }
+}
+</script>
 
 {% endblock %}

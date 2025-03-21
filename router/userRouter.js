@@ -23,7 +23,7 @@ userRouter.get('/subscribe', (req, res) => {
 })
 
 //Déconnexion
-userRouter.get('/logout', (req,res) => {
+userRouter.get('/logout', (req, res) => {
     req.session.destroy();
     res.redirect('/login');
 })
@@ -31,25 +31,21 @@ userRouter.get('/logout', (req,res) => {
 userRouter.post('/subscribe', async (req, res) => {
     try {
         const { name, email, password, confirm_password } = req.body;
-
-        // Vérifier si les mots de passe correspondent
         if (password !== confirm_password) {
             throw { confirm_password: "Les mots de passe ne correspondent pas" };
         }
 
         // Hacher le mot de passe avant de l'enregistrer
         const hashedPassword = await bcrypt.hash(password, 10);
-
-        // Créer l'utilisateur dans la base de données
         const user = await prisma.user.create({
             data: {
                 name: name,
                 email: email,
-                password: hashedPassword, // On enregistre le mot de passe haché
+                password: hashedPassword,
             },
         });
 
-        res.redirect('/login'); // Redirection vers la connexion après inscription
+        res.redirect('/login');
     } catch (error) {
         if (error.code === 'P2002') {
             error = { email: "Cette adresse e-mail est déjà utilisée" };
@@ -75,7 +71,7 @@ userRouter.post('/login', async (req, res) => {
         if (user) {
             if (await bcrypt.compare(req.body.password, user.password)) { //compare les mots de passe
                 req.session.user = user //stock le user en session
-                res.redirect('/') //redirecction vers l'acceuil
+                res.redirect('/')
             }
             else throw {
                 password: "Mot de passe incorrect" //on renvoie l'erreur dans le catch
@@ -95,7 +91,7 @@ userRouter.post('/login', async (req, res) => {
 })
 
 
-userRouter.get("/",authguard , async (req, res) => {
+userRouter.get("/", authguard, async (req, res) => {
     const user = await prisma.user.findUnique({
         where: {
             id: req.session.user.id
@@ -104,35 +100,7 @@ userRouter.get("/",authguard , async (req, res) => {
             storys: true
         }
     })
-    res.render('pages/dashboard.html.twig', {title: "acceuil", user: req.session.user, storys:user.storys});
+    res.render('pages/dashboard.html.twig', { title: "acceuil", user: req.session.user, storys: user.storys });
 })
 
 module.exports = userRouter;
-
-
-// userRouter.post('/subscribe', async (req, res) => {
-//     try {
-//         if (password !== confirm_password) {
-//             const user = await prisma.user.create({
-//                 data: {
-//                     name: req.body.name,
-//                     email: req.body.email,
-//                     password: req.body.password
-//                 }
-
-//             })
-//             res.redirect('/login')
-//         }
-//         else throw ({ confirm_password: "Les mots de passe ne correspondent pas" })
-//     } catch (error) {
-//         if (error.code === 'P2002') {
-//             error = { email: "Cette adresse e-mail est déjà utilisée" }
-//         }
-//         res.render('pages/subscribe.html.twig',
-//             {
-//                 error: error,
-//                 title: 'Inscription',
-//             })
-//     }
-
-// })
